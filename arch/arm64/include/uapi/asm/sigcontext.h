@@ -70,12 +70,14 @@ struct _aarch64_ctx {
 
 #define FPSIMD_MAGIC	0x46508001
 
+#if defined(__aarch64__)
 struct fpsimd_context {
 	struct _aarch64_ctx head;
 	__u32 fpsr;
 	__u32 fpcr;
 	__uint128_t vregs[32];
 };
+#endif /* __aarch64__ */
 
 /*
  * Note: similarly to all other integer fields, each V-register is stored in an

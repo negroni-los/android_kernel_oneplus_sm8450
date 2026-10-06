@@ -92,12 +92,14 @@ struct user_pt_regs {
 	__u64		pstate;
 };
 
+#if defined(__aarch64__)
 struct user_fpsimd_state {
 	__uint128_t	vregs[32];
 	__u32		fpsr;
 	__u32		fpcr;
 	__u32		__reserved[2];
 };
+#endif /* __aarch64__ */
 
 struct user_hwdebug_state {
 	__u32		dbg_info;
@@ -254,16 +256,20 @@ struct user_pac_mask {
 
 /* pointer authentication keys (NT_ARM_PACA_KEYS, NT_ARM_PACG_KEYS) */
 
+#if defined(__aarch64__)
 struct user_pac_address_keys {
 	__uint128_t	apiakey;
 	__uint128_t	apibkey;
 	__uint128_t	apdakey;
 	__uint128_t	apdbkey;
 };
+#endif /* __aarch64__ */
 
+#if defined(__aarch64__)
 struct user_pac_generic_keys {
 	__uint128_t	apgakey;
 };
+#endif /* __aarch64__ */
 
 #endif /* __ASSEMBLY__ */
 
